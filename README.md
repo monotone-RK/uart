@@ -1,0 +1,4 @@
+uart
+==============
+DIGILENT ATLYS boardのUARTのサンプルデザインです．
+
