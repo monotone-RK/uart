@@ -90,8 +90,8 @@ module main(CLK_IN, RST_X_IN, RXD, TXD);
 	 if (we) begin
 	   serdata <= send_data;
 	   $write("send data %x from ", send_data);
-	   if (!POSITION) $write("left\n");
-	   else $write("right\n");
+	   if (POSITION == `LEFT)  $write("left\n");
+	   if (POSITION == `RIGHT) $write("right\n");
 	 end
 	 if (recv_data == serdata + 1 && en && !(we)) begin
 	   we <= 1;
