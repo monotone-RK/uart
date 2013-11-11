@@ -73,14 +73,14 @@ module main(CLK_IN, RST_X_IN, RXD, TXD);
   reg init_done;
   reg [7:0] serdata;
   always @(posedge CLK or negedge RST_X) begin
-    if (!RST_X) begin
+    if (!RST_X) begin	 
 	 we         <= 0;
 	 init_left  <= 0;
 	 init_right <= 0;
-      serdata    <= 0;
+	 serdata    <= 0;
 	 init_done  <= 0;
     end else if (POSITION == `LEFT && !(init_left)) begin
-      we         <= 1;
+	 we         <= 1;
 	 init_left  <= 1;
     end else if (POSITION == `RIGHT && !(init_right)) begin
 	 serdata    <= 8'h61 - 1;
