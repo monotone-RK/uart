@@ -7,6 +7,7 @@
 `define CLKOUT_HALF_PERIOD 4.17 //120MHz output clock
 `define LEFT  0
 `define RIGHT 1
+`define INIT_VALUE 8'h61
   
 module test;
     
@@ -69,39 +70,30 @@ module main(CLK_IN, RST_X_IN, RXD, TXD);
     
   reg we;
   reg init_left;
-  reg init_right;
   reg init_done;
-  reg [7:0] serdata;
   always @(posedge CLK or negedge RST_X) begin
     if (!RST_X) begin	 
 	 we         <= 0;
 	 init_left  <= 0;
-	 init_right <= 0;
-	 serdata    <= 0;
 	 init_done  <= 0;
     end else if (POSITION == `LEFT && !(init_left)) begin
-	 we         <= 1;
-	 init_left  <= 1;
-    end else if (POSITION == `RIGHT && !(init_right)) begin
-	 serdata    <= 8'h61 - 1;
-	 init_right <= 1;
+	 if (ready) begin
+	   we         <= 1;
+	   init_left  <= 1;
+	 end
     end else begin
-	 init_done <= 1;
+	 if (!init_done) init_done <= 1;
+	 we <= (en && !(we) && ready);
 	 if (we) begin
-	   serdata <= send_data;
 	   $write("send data %x from ", send_data);
 	   if (POSITION == `LEFT)  $write("left\n");
 	   if (POSITION == `RIGHT) $write("right\n");
 	 end
-	 if (recv_data == serdata + 1 && en && !(we)) begin
-	   we <= 1;
-	 end else begin
-	   we <= 0;
-	 end
     end
   end
 
-  wire [7:0] send_data = (POSITION == `LEFT && !init_done && ready) ? 8'h61 : (we && ready) ? recv_data + 1 : 0;
+  wire [7:0] send_data = (!init_done && we) ? `INIT_VALUE : 
+                                       (we) ? recv_data + 1 : 0;
   
   wire ready;
   UartTx send(CLK, RST_X, send_data, we, TXD, ready); 
