@@ -101,7 +101,7 @@ module main(CLK_IN, RST_X_IN, RXD, TXD);
     end
   end
 
-  wire [7:0] send_data = (POSITION == `LEFT && !init_done) ? 8'h61 : (we) ? recv_data + 1 : 0;
+  wire [7:0] send_data = (POSITION == `LEFT && !init_done && ready) ? 8'h61 : (we && ready) ? recv_data + 1 : 0;
   
   wire ready;
   UartTx send(CLK, RST_X, send_data, we, TXD, ready); 

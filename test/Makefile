@@ -15,7 +15,7 @@ run:
 	vvp $(TARGET)
 
 view:
-	$(GTK) $(VCD) &
+	$(GTK) $(VCD)
 
 clean:
 	rm -f $(TARGET) $(VCD)
