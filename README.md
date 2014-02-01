@@ -1,6 +1,6 @@
 uart
 ==============
-This is an UART sample design for DIGILENT for ATLYS board.
+This is an UART sample design for DIGILENT ATLYS board.
 
 ise: Xilinx ISE Project file (Webpack edition)
 
