@@ -2,19 +2,19 @@
 # DIGILENT ATLYS board with Xilinx Spartan-6 LX45 FPGA 324-pin BGA package
 ###########################################################################################
 
-NET "CLK_IN"     LOC = "L15"; # 100MHz input clock
-NET "RST_X_IN"   LOC = "T15"; # reset pushbutton
+NET "CLK_IN"     LOC = "L15" | PERIOD = 100 MHz; # 100MHz input clock
+NET "RST_X_IN"   LOC = "T15";                    # reset pushbutton
 ###########################################################################################
-NET "LED<0>"     LOC = "U18"; # Light Emitting Diode LD0
-NET "LED<1>"     LOC = "M14"; # Light Emitting Diode LD1
-NET "LED<2>"     LOC = "N14"; # Light Emitting Diode LD2
-NET "LED<3>"     LOC = "L14"; # Light Emitting Diode LD3
-NET "LED<4>"     LOC = "M13"; # Light Emitting Diode LD4
-NET "LED<5>"     LOC = "D4";  # Light Emitting Diode LD5
-NET "LED<6>"     LOC = "P16"; # Light Emitting Diode LD6
-NET "LED<7>"     LOC = "N12"; # Light Emitting Diode LD7
+NET "LED<0>"     LOC = "U18";                    # Light Emitting Diode LD0
+NET "LED<1>"     LOC = "M14";                    # Light Emitting Diode LD1
+NET "LED<2>"     LOC = "N14";                    # Light Emitting Diode LD2
+NET "LED<3>"     LOC = "L14";                    # Light Emitting Diode LD3
+NET "LED<4>"     LOC = "M13";                    # Light Emitting Diode LD4
+NET "LED<5>"     LOC = "D4";                     # Light Emitting Diode LD5
+NET "LED<6>"     LOC = "P16";                    # Light Emitting Diode LD6
+NET "LED<7>"     LOC = "N12";                    # Light Emitting Diode LD7
 ###########################################################################################
-NET "RXD"        LOC = "A16"; # USB-UART RXD 
-NET "TXD"        LOC = "B16"; # USB-UART TXD
+NET "RXD"        LOC = "A16";                    # USB-UART RXD 
+NET "TXD"        LOC = "B16";                    # USB-UART TXD
 ###########################################################################################
 
